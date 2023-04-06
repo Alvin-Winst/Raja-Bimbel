@@ -59,7 +59,7 @@
             android:layout_gravity="center_vertical"
             android:inputType="textPassword"/>
         <Button
-            android:id="@+id/btn_regis"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center_vertical"
@@ -68,7 +68,7 @@
             android:layout_marginRight="85dp"
             android:text="Login"
             android:textStyle="bold"
-            android:textSize="20dp"
+            android:textSize="18dp"
             />
         <TextView
             android:layout_width="match_parent"
@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register here"
-            android:textColor="@color/white"
+            android:textColor="@color/yellow"
             android:layout_gravity="bottom"
             android:layout_marginBottom="13dp"
             android:textAlignment="textEnd"

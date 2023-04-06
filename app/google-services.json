@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1023852005610",
+    "project_id": "lnt-final-project-a-alvin-ray",
+    "storage_bucket": "lnt-final-project-a-alvin-ray.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023852005610:android:8217af8e8303b3c8d82f93",
+        "android_client_info": {
+          "package_name": "com.example.lntfinalproject_a_alvinraywinston"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023852005610-1gqu6ucugmumgfkp6kio51328inrtsfl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7lIG6yVxgvxCcx56zaqYEXldRlLrf5ww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023852005610-1gqu6ucugmumgfkp6kio51328inrtsfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
