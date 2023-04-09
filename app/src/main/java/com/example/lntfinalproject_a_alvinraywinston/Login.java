@@ -2,10 +2,13 @@ package com.example.lntfinalproject_a_alvinraywinston;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,8 +20,8 @@ public class Login extends AppCompatActivity {
     EditText emailField, passField;
     Button loginBtn;
     TextView regisLink;
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseAuth.AuthStateListener mAuthStateListener;
+    ProgressBar progressBar;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,40 +31,29 @@ public class Login extends AppCompatActivity {
         emailField=findViewById(R.id.email);
         passField=findViewById(R.id.pass);
         loginBtn=findViewById(R.id.btn_login);
-        regisLink=findViewById((R.id.link_register));
+        regisLink=findViewById(R.id.link_register);
+        progressBar=findViewById(R.id.progressbar);
         mAuth = FirebaseAuth.getInstance();
 
         regisLink.setOnClickListener(view -> {
             Intent regisIntent = new Intent(Login.this,Register.class);
             startActivity(regisIntent);
         });
-        mAuthStateListener = firebaseAuth -> {
-            FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
-            if (mFirebaseUser!=null){
-                Toast.makeText(this, "Berhasil login", Toast.LENGTH_SHORT).show();
-                Intent homeIntent = new Intent(Login.this,HomePage.class);
-                startActivity(homeIntent);
-            }else{
-                Toast.makeText(this, "Login gagal", Toast.LENGTH_SHORT).show();
-            }
-        };
         loginBtn.setOnClickListener(view -> {
-            String email = ((EditText)emailField).getText().toString();
-            String pass = ((EditText)passField).getText().toString();
+            progressBar.setVisibility(View.VISIBLE);
+            String email = emailField.getText().toString();
+            String pass = passField.getText().toString();
             mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(Login.this,task -> {
+                progressBar.setVisibility(View.GONE);
                 if(!task.isSuccessful()){
-                    Toast.makeText(this, "Email atau Password tidak sesuai", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Login gagal", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show();
                     Intent home = new Intent(Login.this,HomePage.class);
                     startActivity(home);
+                    finish();
                 }
             });
         });
-    }
-    @Override
-    protected void onStart(){
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthStateListener);
     }
 }
