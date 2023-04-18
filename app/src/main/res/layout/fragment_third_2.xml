@@ -59,7 +59,7 @@
             android:layout_marginTop="10dp"
             android:textSize="20dp" />
         <EditText
-            android:id="@+id/tinggiSegitiga"
+            android:id="@+id/tinggiPiramida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
@@ -83,7 +83,7 @@
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/hasilSegitiga"
+            android:id="@+id/hasilPiramida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
