@@ -66,17 +66,17 @@ public class Register extends AppCompatActivity {
                 String nama = namaField.getText().toString();
                 String pass = passField.getText().toString();
 
-                mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(this,task -> {
-                    if (!task.isSuccessful()){
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(this, "Gagal registrasi", Toast.LENGTH_SHORT).show();
-                    }else{
+                mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(Register.this,task -> {
+                    if (task.isSuccessful()){
                         userRef = fDatabase.getReference().child("users").child(mAuth.getCurrentUser().getUid());
                         userRef.setValue(new User(idBimbel,email,nama,pass));
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(this, "Registrasi berhasil", Toast.LENGTH_SHORT).show();
                         Intent loginIntent = new Intent(Register.this,Login.class);
                         startActivity(loginIntent);
+                    }else{
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(this, "Gagal registrasi", Toast.LENGTH_SHORT).show();
                     }
                 });
 

@@ -43,6 +43,7 @@ public class HomePage extends AppCompatActivity {
 
         ProgressDialog progressDialog = new ProgressDialog(HomePage.this);
         progressDialog.setTitle("Please wait. . .");
+        progressDialog.setMessage("Processing account");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
