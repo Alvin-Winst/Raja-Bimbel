@@ -28,17 +28,17 @@ public class ThirdFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewPager2 = view.findViewById(R.id.viewPager);
-        tabLayout = view.findViewById(R.id.tabLayout);
+        viewPager2 = view.findViewById(R.id.viewPager3);
+        tabLayout = view.findViewById(R.id.tabLayout3);
         setViewPager2(viewPager2);
         new TabLayoutMediator(tabLayout,viewPager2,(tab, position) -> tab.setText(pagerAdaptor.getFragmentTitle(position))).attach();
     }
     public void setViewPager2(ViewPager2 viewPager2){
         if (pagerAdaptor==null){
             pagerAdaptor = new PagerAdaptor(this);
-            pagerAdaptor.addFragment(new FirstFragment(),"Block");
-            pagerAdaptor.addFragment(new SecondFragment(),"Pyramid");
-            pagerAdaptor.addFragment(new ThirdFragment(),"Cylinder");
+            pagerAdaptor.addFragment(new ThirdFragment_1(),"Block");
+            pagerAdaptor.addFragment(new ThirdFragment_2(),"Pyramid");
+            pagerAdaptor.addFragment(new ThirdFragment_3(),"Cylinder");
             viewPager2.setAdapter(pagerAdaptor);
         }
     }

@@ -1,5 +1,6 @@
 package com.example.lntfinalproject_a_alvinraywinston;
 
+import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 import android.os.Bundle;
@@ -12,11 +13,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class SecondFragment_3 extends Fragment {
     EditText et_radius;
-    EditText et_hasil;
+    TextView tv_hasil;
+    Button btn_hitung;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,11 +32,16 @@ public class SecondFragment_3 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         et_radius = view.findViewById(R.id.jariLingkaran);
-        et_hasil = view.findViewById(R.id.hasilLingkaran);
-        et_radius.setOnFocusChangeListener((view1, b) -> {
-            if(!b && !TextUtils.isEmpty(et_radius.getText())){
-                int radius = parseInt(et_radius.getText().toString());
-                et_hasil.setText((int) (3.14*radius*radius));
+        tv_hasil = view.findViewById(R.id.hasilLingkaran);
+        btn_hitung = view.findViewById(R.id.hitungLingkaran);
+        btn_hitung.setOnClickListener(view1 -> {
+            if (TextUtils.isEmpty(et_radius.getText().toString())){
+                tv_hasil.setText("0");
+            }
+            else {
+                double radius = parseDouble(et_radius.getText().toString());
+                double luas = 3.14*radius*radius;
+                tv_hasil.setText(String.valueOf(luas));
             }
         });
     }

@@ -1,5 +1,8 @@
 package com.example.lntfinalproject_a_alvinraywinston;
 
+import static java.lang.Integer.parseInt;
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -82,27 +85,26 @@ public class FirstFragment extends Fragment {
         reset = view.findViewById(R.id.btn_reset);
 
         sharedPreferences = getContext().getSharedPreferences("count", Context.MODE_PRIVATE);
-        counter.setText(sharedPreferences.getString("current","0"));
-
+        counter.setText(String.valueOf(sharedPreferences.getInt("current",0)));
         SharedPreferences.Editor editor = sharedPreferences.edit();
         plus.setOnClickListener(view1 -> {
-            int count = Integer.parseInt(counter.getText().toString());
+            int count = parseInt(counter.getText().toString());
             count++;
-            counter.setText(count);
-            editor.putString("current", String.valueOf(count));
-            editor.commit();
+            editor.putInt("current", count);
+            editor.apply();
+            counter.setText(String.valueOf(count));
         });
         minus.setOnClickListener(view1 -> {
-            int count = Integer.parseInt(counter.getText().toString());
+            int count = parseInt(counter.getText().toString());
             count--;
-            counter.setText(count);
-            editor.putString("current", String.valueOf(count));
-            editor.commit();
+            editor.putInt("current", count);
+            editor.apply();
+            counter.setText(String.valueOf(count));
         });
         reset.setOnClickListener(view1 -> {
+            editor.putInt("current", 0);
+            editor.apply();
             counter.setText("0");
-            editor.putString("current","0");
-            editor.commit();
         });
     }
 }

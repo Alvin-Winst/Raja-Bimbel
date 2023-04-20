@@ -1,5 +1,6 @@
 package com.example.lntfinalproject_a_alvinraywinston;
 
+import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 import android.os.Bundle;
@@ -12,12 +13,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class SecondFragment_2 extends Fragment {
     EditText et_alas;
     EditText et_tinggi;
-    EditText et_hasil;
+    TextView tv_hasil;
+    Button btn_hitung;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,32 +35,18 @@ public class SecondFragment_2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         et_alas = view.findViewById(R.id.alasSegitiga);
         et_tinggi = view.findViewById(R.id.tinggiSegitiga);
-        et_hasil = view.findViewById(R.id.hasilSegitiga);
+        tv_hasil = view.findViewById(R.id.hasilSegitiga);
+        btn_hitung = view.findViewById(R.id.hitungSegitiga);
 
-        et_alas.setOnFocusChangeListener((view1, b) -> {
-            if (!b && !TextUtils.isEmpty(et_alas.getText())){
-                int alas, tinggi;
-                if(TextUtils.isEmpty((et_tinggi.getText()))){
-                    tinggi = 0;
-                }
-                else {
-                    tinggi = parseInt(et_tinggi.getText().toString());
-                }
-                alas = parseInt(et_alas.getText().toString());
-                et_hasil.setText(alas*tinggi/2);
+        btn_hitung.setOnClickListener(view1 -> {
+            if (TextUtils.isEmpty(et_alas.getText().toString()) || TextUtils.isEmpty(et_tinggi.getText().toString())){
+                tv_hasil.setText("0");
             }
-        });
-        et_tinggi.setOnFocusChangeListener((view1, b) -> {
-            if(!b && !TextUtils.isEmpty(et_tinggi.getText())){
-                int alas, tinggi;
-                if(TextUtils.isEmpty((et_alas.getText()))){
-                    alas = 0;
-                }
-                else {
-                    alas = parseInt(et_alas.getText().toString());
-                }
-                tinggi = parseInt(et_tinggi.getText().toString());
-                et_hasil.setText(alas*tinggi/2);
+            else{
+                double alas = parseDouble(et_alas.getText().toString());
+                double tinggi = parseDouble(et_tinggi.getText().toString());
+                double luas = alas*tinggi/2;
+                tv_hasil.setText(String.valueOf(luas));
             }
         });
     }

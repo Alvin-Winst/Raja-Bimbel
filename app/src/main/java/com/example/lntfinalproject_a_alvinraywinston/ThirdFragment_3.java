@@ -1,5 +1,6 @@
 package com.example.lntfinalproject_a_alvinraywinston;
 
+import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 import android.os.Bundle;
@@ -12,12 +13,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ThirdFragment_3 extends Fragment {
     EditText et_radius;
     EditText et_tinggi;
-    EditText et_hasil;
+    TextView tv_hasil;
+    Button btn_hitung;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,31 +34,17 @@ public class ThirdFragment_3 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         et_radius = view.findViewById(R.id.jariTabung);
         et_tinggi = view.findViewById(R.id.tinggiTabung);
-        et_hasil = view.findViewById(R.id.hasilTabung);
-        et_radius.setOnFocusChangeListener((view1, b) -> {
-            if (!b && !TextUtils.isEmpty(et_radius.getText())){
-                int radius, tinggi;
-                if(TextUtils.isEmpty((et_tinggi.getText()))){
-                    tinggi = 0;
-                }
-                else {
-                    tinggi = parseInt(et_tinggi.getText().toString());
-                }
-                radius = parseInt(et_radius.getText().toString());
-                et_hasil.setText((int) (3.14*radius*radius*tinggi));
+        tv_hasil = view.findViewById(R.id.hasilTabung);
+        btn_hitung = view.findViewById(R.id.hitungTabung);
+        btn_hitung.setOnClickListener(view1 -> {
+            if (TextUtils.isEmpty(et_radius.getText().toString()) || TextUtils.isEmpty(et_tinggi.getText().toString())){
+                tv_hasil.setText("0");
             }
-        });
-        et_tinggi.setOnFocusChangeListener((view1, b) -> {
-            if(!b && !TextUtils.isEmpty(et_tinggi.getText())){
-                int radius, tinggi;
-                if(TextUtils.isEmpty((et_radius.getText()))){
-                    radius = 0;
-                }
-                else {
-                    radius = parseInt(et_radius.getText().toString());
-                }
-                tinggi = parseInt(et_tinggi.getText().toString());
-                et_hasil.setText((int) (3.14*radius*radius*tinggi));
+            else {
+                double radius = parseDouble(et_radius.getText().toString());
+                double tinggi = parseDouble(et_tinggi.getText().toString());
+                double luas = 3.14*radius*radius*tinggi;
+                tv_hasil.setText(String.valueOf(luas));
             }
         });
     }

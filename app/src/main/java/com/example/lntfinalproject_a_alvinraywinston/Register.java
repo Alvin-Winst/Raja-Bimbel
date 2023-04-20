@@ -70,6 +70,7 @@ public class Register extends AppCompatActivity {
                     if (task.isSuccessful()){
                         userRef = fDatabase.getReference().child("users").child(mAuth.getCurrentUser().getUid());
                         userRef.setValue(new User(idBimbel,email,nama,pass));
+                        userRef.push();
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(this, "Registrasi berhasil", Toast.LENGTH_SHORT).show();
                         Intent loginIntent = new Intent(Register.this,Login.class);

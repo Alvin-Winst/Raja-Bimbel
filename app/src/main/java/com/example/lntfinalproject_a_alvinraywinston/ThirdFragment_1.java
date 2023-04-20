@@ -1,5 +1,6 @@
 package com.example.lntfinalproject_a_alvinraywinston;
 
+import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 import android.os.Bundle;
@@ -12,13 +13,16 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ThirdFragment_1 extends Fragment {
     EditText et_panjang;
     EditText et_lebar;
     EditText et_tinggi;
-    EditText et_hasil;
+    TextView tv_hasil;
+    Button btn_hitung;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,64 +37,19 @@ public class ThirdFragment_1 extends Fragment {
         et_panjang = view.findViewById(R.id.panjangBalok);
         et_lebar = view.findViewById(R.id.lebarBalok);
         et_tinggi = view.findViewById(R.id.tinggiBalok);
-        et_hasil = view.findViewById(R.id.hasilBalok);
-        et_panjang.setOnFocusChangeListener((view1, b) -> {
-            if(!b && !TextUtils.isEmpty(et_panjang.getText())){
-                int panjang, lebar, tinggi;
-                if (TextUtils.isEmpty(et_lebar.getText())){
-                    lebar = 0;
-                }
-                else{
-                    lebar = parseInt(et_lebar.getText().toString());
-                }
-                if (TextUtils.isEmpty(et_tinggi.getText())){
-                    tinggi = 0;
-                }
-                else{
-                    tinggi = parseInt(et_tinggi.getText().toString());
-                }
-                panjang = parseInt(et_panjang.getText().toString());
-                et_hasil.setText(panjang*lebar*tinggi);
+        tv_hasil = view.findViewById(R.id.hasilBalok);
+        btn_hitung = view.findViewById(R.id.hitungBalok);
+        btn_hitung.setOnClickListener(view1 -> {
+            if (TextUtils.isEmpty(et_panjang.getText().toString()) || TextUtils.isEmpty(et_lebar.getText().toString()) ||
+            TextUtils.isEmpty(et_tinggi.getText().toString())){
+                tv_hasil.setText("0");
             }
-        });
-
-        et_lebar.setOnFocusChangeListener((view1, b) -> {
-            if(!b && !TextUtils.isEmpty(et_lebar.getText())){
-                int panjang, lebar, tinggi;
-                if (TextUtils.isEmpty(et_panjang.getText())){
-                    panjang = 0;
-                }
-                else{
-                    panjang = parseInt(et_panjang.getText().toString());
-                }
-                if (TextUtils.isEmpty(et_tinggi.getText())){
-                    tinggi = 0;
-                }
-                else{
-                    tinggi = parseInt(et_tinggi.getText().toString());
-                }
-                lebar = parseInt(et_lebar.getText().toString());
-                et_hasil.setText(panjang*lebar*tinggi);
-            }
-        });
-
-        et_tinggi.setOnFocusChangeListener((view1, b) -> {
-            if(!b && !TextUtils.isEmpty(et_tinggi.getText())){
-                int panjang, lebar, tinggi;
-                if (TextUtils.isEmpty(et_panjang.getText())){
-                    panjang = 0;
-                }
-                else{
-                    panjang = parseInt(et_panjang.getText().toString());
-                }
-                if (TextUtils.isEmpty(et_lebar.getText())){
-                    lebar = 0;
-                }
-                else{
-                    lebar = parseInt(et_lebar.getText().toString());
-                }
-                tinggi = parseInt(et_tinggi.getText().toString());
-                et_hasil.setText(panjang*lebar*tinggi);
+            else {
+                double panjang = parseDouble(et_panjang.getText().toString());
+                double lebar = parseDouble(et_lebar.getText().toString());
+                double tinggi = parseDouble(et_tinggi.getText().toString());
+                double luas = panjang*lebar*tinggi;
+                tv_hasil.setText(String.valueOf(luas));
             }
         });
     }
